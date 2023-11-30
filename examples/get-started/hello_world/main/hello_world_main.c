@@ -9,9 +9,8 @@
 #include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_chip_info.h"
+#include "esp_chip_info.h"                                                      // header file for accessing chip's info
 #include "esp_flash.h"
-#include "esp_system.h"
 
 void app_main(void)
 {
@@ -24,10 +23,10 @@ void app_main(void)
     printf("This is %s chip with %d CPU core(s), %s%s%s%s, ",
            CONFIG_IDF_TARGET,
            chip_info.cores,
-           (chip_info.features & CHIP_FEATURE_WIFI_BGN) ? "WiFi/" : "",
-           (chip_info.features & CHIP_FEATURE_BT) ? "BT" : "",
-           (chip_info.features & CHIP_FEATURE_BLE) ? "BLE" : "",
-           (chip_info.features & CHIP_FEATURE_IEEE802154) ? ", 802.15.4 (Zigbee/Thread)" : "");
+           (chip_info.features & CHIP_FEATURE_WIFI_BGN) ? "WiFi/" : "",         // if the chip has 2.4GHz Wifi
+           (chip_info.features & CHIP_FEATURE_BT) ? "BT" : "",                  // if the chip has Bluetooth LE
+           (chip_info.features & CHIP_FEATURE_BLE) ? "BLE" : "",                // if the chip has Bluetooth Classic
+           (chip_info.features & CHIP_FEATURE_IEEE802154) ? ", 802.15.4 (Zigbee/Thread)" : ""); // if the chip has IEEE80.215.4
 
     unsigned major_rev = chip_info.revision / 100;
     unsigned minor_rev = chip_info.revision % 100;
